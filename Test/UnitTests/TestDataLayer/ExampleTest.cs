@@ -7,12 +7,11 @@ using DataLayer.BookApp;
 using DataLayer.BookApp.EfCode;
 using TestSupport.EfHelpers;
 using Xunit;
-using Xunit.Abstractions;
 using Xunit.Extensions.AssertExtensions;
 
 namespace Test.UnitTests.TestDataLayer
 {
-    public class ExampleTest 
+    public class ExampleTest
     {
 
         private readonly ITestOutputHelper _output;
@@ -40,9 +39,9 @@ namespace Test.UnitTests.TestDataLayer
                 //VERIFY
                 context.Books.Count().ShouldEqual(1);
                 foreach (var log in logs)
-                {                                    
+                {
                     _output.WriteLine(log);
-                }                                     
+                }
             }
         }
     }

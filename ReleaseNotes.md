@@ -1,5 +1,10 @@
 # Release notes
 
+## 9.1.0
+
+- .NET 8 and 9 version
+- Updated xunit NuGets to xunit.v3
+
 ## 9.0.0
 
 - .NET 9 version

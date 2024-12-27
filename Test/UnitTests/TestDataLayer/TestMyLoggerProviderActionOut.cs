@@ -4,7 +4,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 using DataLayer.BookApp.EfCode;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +12,6 @@ using Microsoft.Extensions.Logging;
 using Test.Helpers;
 using TestSupport.EfHelpers;
 using Xunit;
-using Xunit.Abstractions;
 using Xunit.Extensions.AssertExtensions;
 
 namespace Test.UnitTests.TestDataLayer
@@ -22,7 +20,7 @@ namespace Test.UnitTests.TestDataLayer
     {
         private readonly ITestOutputHelper _output;
 
-        public TestMyLoggerProviderActionOut(ITestOutputHelper output) 
+        public TestMyLoggerProviderActionOut(ITestOutputHelper output)
         {
             _output = output;
         }

@@ -8,7 +8,6 @@ using Newtonsoft.Json;
 using TestSupport.EfHelpers;
 using TestSupport.SeedDatabase;
 using Xunit;
-using Xunit.Abstractions;
 using Xunit.Extensions.AssertExtensions;
 
 namespace Test.UnitTests.TestDataResetter
@@ -153,7 +152,7 @@ namespace Test.UnitTests.TestDataResetter
         }
 
         public class ManyToMany
-        { 
+        {
             public ManyToMany() { }
 
             public int TestBookId { get; private set; }
@@ -166,6 +165,6 @@ namespace Test.UnitTests.TestDataResetter
                 BookLink = book;
                 AuthorLink = author;
             }
-        } 
+        }
     }
 }

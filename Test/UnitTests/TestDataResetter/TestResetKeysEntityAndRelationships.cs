@@ -9,12 +9,11 @@ using Test.Helpers;
 using TestSupport.EfHelpers;
 using TestSupport.SeedDatabase;
 using Xunit;
-using Xunit.Abstractions;
 using Xunit.Extensions.AssertExtensions;
 
 namespace Test.UnitTests.TestDataResetter
 {
-    public class TestResetKeysEntityAndRelationships 
+    public class TestResetKeysEntityAndRelationships
     {
         private readonly ITestOutputHelper _output;
 
@@ -38,7 +37,7 @@ namespace Test.UnitTests.TestDataResetter
                 var resetter = new DataResetter(context);
                 resetter.ResetKeysEntityAndRelationships(entity);
 
-                //VERIFY 
+                //VERIFY
                 entity.BookId.ShouldEqual(0);
             }
         }
@@ -63,7 +62,7 @@ namespace Test.UnitTests.TestDataResetter
                 var resetter = new DataResetter(context);
                 resetter.ResetKeysEntityAndRelationships(entity);
 
-                //VERIFY 
+                //VERIFY
                 entity.BookId.ShouldEqual(0);
                 entity.Reviews.All(x => x.ReviewId == 0).ShouldBeTrue();
                 entity.Reviews.All(x => x.BookId == 0).ShouldBeTrue();
@@ -101,7 +100,7 @@ namespace Test.UnitTests.TestDataResetter
                 context.Add(entity);
                 var states = context.ChangeTracker.Entries().Select(x => x.State).ToList();
 
-                //VERIFY 
+                //VERIFY
                 states.Count.ShouldEqual(1 + 2 + 1 + 1 + 1); // Book + 2 reviews + promotion + BookAuthor + author
                 states.All(x => x == EntityState.Added).ShouldBeTrue();
             }
@@ -127,7 +126,7 @@ namespace Test.UnitTests.TestDataResetter
                 var resetter = new DataResetter(context);
                 resetter.ResetKeysEntityAndRelationships(entities);
 
-                //VERIFY 
+                //VERIFY
                 foreach (var entity in entities)
                 {
                     entity.BookId.ShouldEqual(0);
@@ -140,7 +139,7 @@ namespace Test.UnitTests.TestDataResetter
                     }
                     entity.AuthorsLink.All(x => x.AuthorId == 0).ShouldBeTrue();
                     entity.AuthorsLink.All(x => x.BookId == 0).ShouldBeTrue();
-                    entity.AuthorsLink.Select(x => x.Author).All(x => x.AuthorId == 0).ShouldBeTrue();                   
+                    entity.AuthorsLink.Select(x => x.Author).All(x => x.AuthorId == 0).ShouldBeTrue();
                 }
             }
         }

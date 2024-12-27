@@ -13,12 +13,11 @@ using TestSupport.Attributes;
 using TestSupport.EfHelpers;
 using TestSupport.SeedDatabase;
 using Xunit;
-using Xunit.Abstractions;
 using Xunit.Extensions.AssertExtensions;
 
 namespace Test.UnitTests.TestDataResetter
 {
-    public class DddExampleSetupAndSeed 
+    public class DddExampleSetupAndSeed
     {
         private readonly ITestOutputHelper _output;
 
@@ -159,7 +158,7 @@ namespace Test.UnitTests.TestDataResetter
             //SETUP
 
             //This simulates the production database
-            //Typically you would open a database 
+            //Typically you would open a database
             var options = SqliteInMemory.CreateOptions<DddBookContext>();
             using (var context = new DddBookContext(options))
             {
@@ -221,7 +220,7 @@ namespace Test.UnitTests.TestDataResetter
                 context.Add(entity);
                 var ex = Assert.Throws<DbUpdateException>(() => context.SaveChanges());
 
-                //VERIFY 
+                //VERIFY
                 //Odd error. Used to be "SQLite Error 19: 'UNIQUE constraint failed: DddAuthors.AuthorId'." in EF Core 5
                 ex.InnerException.Message.ShouldEqual("SQLite Error 19: 'UNIQUE constraint failed: DddAuthors.AuthorId'.");
             }
@@ -247,7 +246,7 @@ namespace Test.UnitTests.TestDataResetter
                 //ATTEMPT
                 //... run your tests here
 
-                //VERIFY 
+                //VERIFY
                 context.DddBooks.First().ActualPrice.ShouldEqual(1);
                 context.DddBooks.Count().ShouldEqual(4);
                 context.DddAuthors.Count().ShouldEqual(3);

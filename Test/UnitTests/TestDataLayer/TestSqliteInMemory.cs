@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using Test.Helpers;
 using TestSupport.EfHelpers;
 using Xunit;
-using Xunit.Abstractions;
 using Xunit.Extensions.AssertExtensions;
 
 namespace Test.UnitTests.TestDataLayer
@@ -59,10 +58,10 @@ namespace Test.UnitTests.TestDataLayer
             context.Database.EnsureCreated();
 
             //ATTEMPT
-            context.SeedDatabaseFourBooks(); 
+            context.SeedDatabaseFourBooks();
 
             //VERIFY
-            context.Books.Count().ShouldEqual(4); 
+            context.Books.Count().ShouldEqual(4);
         }
 
         [Fact]
@@ -94,7 +93,7 @@ namespace Test.UnitTests.TestDataLayer
                 context.SeedDatabaseFourBooks(); //#C
             }
             using (var context = new BookContext(options))//#D
-            {   
+            {
                 //ATTEMPT
                 var books = context.Books.ToList(); //#E
 
@@ -120,7 +119,7 @@ namespace Test.UnitTests.TestDataLayer
             using (var context = new BookContext(options))
             {
                 context.Database.EnsureCreated();
-                context.SeedDatabaseFourBooks(); 
+                context.SeedDatabaseFourBooks();
             }
             using (var context = new BookContext(options))
             {
@@ -133,7 +132,7 @@ namespace Test.UnitTests.TestDataLayer
             using (var context = new BookContext(options))
             {
                 //ATTEMPT
-                var books = context.Books.ToList(); 
+                var books = context.Books.ToList();
 
                 //VERIFY
                 books.Last().Reviews.ShouldBeNull();
@@ -163,12 +162,12 @@ namespace Test.UnitTests.TestDataLayer
         public void TestSqliteSingleInstanceOk()
         {
             //SETUP
-            var options = SqliteInMemory 
-                .CreateOptions<BookContext>(); 
-            using (var context = new BookContext(options)) 
+            var options = SqliteInMemory
+                .CreateOptions<BookContext>();
+            using (var context = new BookContext(options))
             {
-                context.Database.EnsureCreated(); 
-                context.SeedDatabaseFourBooks(); 
+                context.Database.EnsureCreated();
+                context.SeedDatabaseFourBooks();
 
                 //ATTEMPT
                 var books = context.Books.ToList();

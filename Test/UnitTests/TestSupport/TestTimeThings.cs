@@ -4,19 +4,16 @@
 using System.Threading;
 using TestSupport.EfHelpers;
 using Xunit;
-using Xunit.Abstractions;
 using Xunit.Extensions.AssertExtensions;
 
 namespace Test.UnitTests.TestSupport;
 
 public class TestTimeThings(ITestOutputHelper output)
 {
-    private ITestOutputHelper _output = output;
-
-    [Fact]                  
-    public void TestNoSettings() 
+    [Fact]
+    public void TestNoSettings()
     {
-        //SETUP                  
+        //SETUP
         var mock = new MockOutput();
 
         //ATTEMPT
@@ -33,7 +30,7 @@ public class TestTimeThings(ITestOutputHelper output)
     [Fact]
     public void TestMessage()
     {
-        //SETUP                  
+        //SETUP
         var mock = new MockOutput();
 
         //ATTEMPT
@@ -53,7 +50,7 @@ public class TestTimeThings(ITestOutputHelper output)
     [InlineData(1000)]
     public void TestTime(int milliseconds)
     {
-        //SETUP                  
+        //SETUP
         var mock = new MockOutput();
 
         //ATTEMPT
@@ -63,13 +60,13 @@ public class TestTimeThings(ITestOutputHelper output)
         }
 
         //VERIFY
-        _output.WriteLine($"{milliseconds}: {mock.LastWriteLine}");
+        output.WriteLine($"{milliseconds}: {mock.LastWriteLine}");
     }
 
     [Fact]
     public void TestMessageAndNumRuns()
     {
-        //SETUP                  
+        //SETUP
         var mock = new MockOutput();
 
         //ATTEMPT
@@ -87,7 +84,7 @@ public class TestTimeThings(ITestOutputHelper output)
     [Fact]
     public void TestTimeThingResultReturn()
     {
-        //SETUP                  
+        //SETUP
         TimeThingResult result = null;
 
         //ATTEMPT
@@ -155,6 +152,16 @@ public class TestTimeThings(ITestOutputHelper output)
     {
         public string LastWriteLine { get; private set; }
 
+        public void Write(string message)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Write(string format, params object[] args)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void WriteLine(string message)
         {
             LastWriteLine = message;
@@ -164,5 +171,7 @@ public class TestTimeThings(ITestOutputHelper output)
         {
             throw new System.NotImplementedException();
         }
+
+        public string Output { get; }
     }
 }

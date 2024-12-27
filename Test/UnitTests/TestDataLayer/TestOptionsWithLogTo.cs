@@ -12,7 +12,6 @@ using Test.Helpers;
 using TestSupport.Attributes;
 using TestSupport.EfHelpers;
 using Xunit;
-using Xunit.Abstractions;
 using Xunit.Extensions.AssertExtensions;
 
 namespace Test.UnitTests.TestDataLayer
@@ -21,7 +20,7 @@ namespace Test.UnitTests.TestDataLayer
     {
         private readonly ITestOutputHelper _output;
 
-        public TestOptionsWithLogTo(ITestOutputHelper output) 
+        public TestOptionsWithLogTo(ITestOutputHelper output)
         {
             _output = output;
         }
@@ -34,11 +33,11 @@ namespace Test.UnitTests.TestDataLayer
             using var context = new BookContext(options);
             context.Database.EnsureCreated();
             context.SeedDatabaseFourBooks();
-                
-            //ATTEMPT
-            var books = context.Books.ToList(); 
 
-            //VERIFY                                    
+            //ATTEMPT
+            var books = context.Books.ToList();
+
+            //VERIFY
         }
 
         [Fact]
@@ -51,7 +50,7 @@ namespace Test.UnitTests.TestDataLayer
             context.Database.EnsureCreated();
             context.SeedDatabaseFourBooks();
 
-            //ATTEMPT 
+            //ATTEMPT
             var book = context.Books.Single(x => x.Reviews.Count() > 1);
 
             //VERIFY
@@ -72,7 +71,7 @@ namespace Test.UnitTests.TestDataLayer
             context.Database.EnsureCreated();
             context.SeedDatabaseFourBooks();
 
-            //ATTEMPT 
+            //ATTEMPT
             logToOptions.ShowLog = true;
             var book = context.Books.Single(x => x.Reviews.Count() > 1);
 
@@ -96,7 +95,7 @@ namespace Test.UnitTests.TestDataLayer
             context.Database.EnsureCreated();
             context.SeedDatabaseFourBooks();
 
-            //ATTEMPT 
+            //ATTEMPT
             var books = context.Books.Select(x => x.BookId).ToList();
 
             //VERIFY
@@ -104,7 +103,7 @@ namespace Test.UnitTests.TestDataLayer
         }
 
         [RunnableInDebugOnly]
-        //There some type of overlap of events which causes problems. 
+        //There some type of overlap of events which causes problems.
         //Works if manually as in debug mode
         public void TestEfCoreLoggingCheckOnlyShowTheseEvents()
         {
@@ -119,7 +118,7 @@ namespace Test.UnitTests.TestDataLayer
             context.Database.EnsureCreated();
             context.SeedDatabaseFourBooks();
 
-            //ATTEMPT 
+            //ATTEMPT
             var books = context.Books.Select(x => x.BookId).ToList();
 
             //VERIFY
@@ -146,7 +145,7 @@ namespace Test.UnitTests.TestDataLayer
             context.Database.EnsureCreated();
             context.SeedDatabaseFourBooks();
 
-            //ATTEMPT 
+            //ATTEMPT
             var books = context.Books.Select(x => x.BookId).ToList();
 
             //VERIFY
@@ -164,7 +163,7 @@ namespace Test.UnitTests.TestDataLayer
                 OnlyShowTheseCategories = new[] { DbLoggerCategory.Database.Command.Name }
             };
 
-            //ATTEMPT 
+            //ATTEMPT
             var ex = Assert.Throws<NotSupportedException>(() =>
                 SqliteInMemory.CreateOptionsWithLogTo<BookContext>(log => logs.Add(log), logToOptions));
 
@@ -186,7 +185,7 @@ namespace Test.UnitTests.TestDataLayer
             context.Database.EnsureCreated();
             context.SeedDatabaseFourBooks();
 
-            //ATTEMPT 
+            //ATTEMPT
             var books = context.Books.Select(x => x.BookId).ToList();
 
             //VERIFY
@@ -207,7 +206,7 @@ namespace Test.UnitTests.TestDataLayer
             context.Database.EnsureCreated();
             context.SeedDatabaseFourBooks();
 
-            //ATTEMPT 
+            //ATTEMPT
             var books = context.Books.Select(x => x.BookId).ToList();
 
             //VERIFY
@@ -225,7 +224,7 @@ namespace Test.UnitTests.TestDataLayer
             context.Database.EnsureCreated();
             context.SeedDatabaseFourBooks();
 
-            //ATTEMPT 
+            //ATTEMPT
             var book = context.Books.Where(x => x.Reviews.Count() > 1).Select(x => x.BookId).First();
 
             //VERIFY
@@ -244,7 +243,7 @@ namespace Test.UnitTests.TestDataLayer
             context.Database.EnsureCreated();
             context.SeedDatabaseFourBooks();
 
-            //ATTEMPT 
+            //ATTEMPT
             var book = context.Books.Where(x => x.Reviews.Count() > 1).Select(x => x.BookId).First();
 
             //VERIFY

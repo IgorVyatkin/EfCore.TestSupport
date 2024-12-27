@@ -15,12 +15,11 @@ using TestSupport.Attributes;
 using TestSupport.EfHelpers;
 using TestSupport.SeedDatabase;
 using Xunit;
-using Xunit.Abstractions;
 using Xunit.Extensions.AssertExtensions;
 
 namespace Test.UnitTests.TestDataResetter
 {
-    public class ExampleSetupAndSeed 
+    public class ExampleSetupAndSeed
     {
         private readonly ITestOutputHelper _output;
 
@@ -99,7 +98,7 @@ namespace Test.UnitTests.TestDataResetter
             //SETUP
 
             //This simulates the production database
-            //Typically you would open a database 
+            //Typically you would open a database
             var options = SqliteInMemory.CreateOptions<BookContext>();
             using (var context = new BookContext(options))
             {
@@ -162,7 +161,7 @@ namespace Test.UnitTests.TestDataResetter
                 context.Add(entity);
                 var ex = Assert.Throws<DbUpdateException>(() => context.SaveChanges());
 
-                //VERIFY 
+                //VERIFY
                 //Odd error. Used to be "SQLite Error 19: 'UNIQUE constraint failed: Authors.AuthorId'." in EF Core 5
                 ex.InnerException.Message.ShouldEqual("SQLite Error 19: 'UNIQUE constraint failed: Authors.AuthorId'.");
             }
@@ -188,7 +187,7 @@ namespace Test.UnitTests.TestDataResetter
                 //ATTEMPT
                 //... run your tests here
 
-                //VERIFY 
+                //VERIFY
                 context.Books.First().Title.ShouldEqual("new title");
                 context.Books.Count().ShouldEqual(4);
                 context.Authors.Count().ShouldEqual(3);
@@ -213,7 +212,7 @@ namespace Test.UnitTests.TestDataResetter
                 //ATTEMPT
                 //... run your tests here
 
-                //VERIFY 
+                //VERIFY
                 context.DddBooks.First().Title.ShouldEqual("Refactoring");
                 context.DddBooks.Count().ShouldEqual(4);
                 context.DddAuthors.Count().ShouldEqual(3);

@@ -10,12 +10,11 @@ using Test.Helpers;
 using TestSupport.Attributes;
 using TestSupport.EfHelpers;
 using Xunit;
-using Xunit.Abstractions;
 using Xunit.Extensions.AssertExtensions;
 
 namespace Test.UnitTests.TestDataLayer
 {
-    public class TestPostgreSqlHelpers 
+    public class TestPostgreSqlHelpers
     {
         private readonly ITestOutputHelper _output;
 
@@ -101,7 +100,7 @@ namespace Test.UnitTests.TestDataLayer
             var options = this.CreatePostgreSqlUniqueClassOptions<BookContext>();
             using var context = new BookContext(options);
 
-            context.Database.EnsureCreated(); 
+            context.Database.EnsureCreated();
             context.SeedDatabaseFourBooks();
 
             //ATTEMPT

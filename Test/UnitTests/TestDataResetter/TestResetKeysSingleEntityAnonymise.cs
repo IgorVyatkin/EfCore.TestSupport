@@ -6,7 +6,6 @@ using DataLayer.BookApp.EfCode;
 using TestSupport.EfHelpers;
 using TestSupport.SeedDatabase;
 using Xunit;
-using Xunit.Abstractions;
 using Xunit.Extensions.AssertExtensions;
 
 namespace Test.UnitTests.TestDataResetter
@@ -35,7 +34,7 @@ namespace Test.UnitTests.TestDataResetter
                 var resetter = new DataResetter(context, config);
                 resetter.ResetKeysSingleEntity(entity);
 
-                //VERIFY 
+                //VERIFY
                 entity.Name.ShouldNotEqual("Test");
             }
         }
@@ -55,7 +54,7 @@ namespace Test.UnitTests.TestDataResetter
                 var resetter = new DataResetter(context, config);
                 resetter.ResetKeysSingleEntity(entity);
 
-                //VERIFY 
+                //VERIFY
                 entity.Name.ShouldEndWith(DataResetterConfig.EmailSuffix);
             }
         }
@@ -75,7 +74,7 @@ namespace Test.UnitTests.TestDataResetter
                 var resetter = new DataResetter(context, config);
                 resetter.ResetKeysSingleEntity(entity);
 
-                //VERIFY 
+                //VERIFY
                 entity.Name.ShouldNotEqual("Test");
                 entity.Name.Length.ShouldEqual(5);
             }
@@ -96,7 +95,7 @@ namespace Test.UnitTests.TestDataResetter
                 var resetter = new DataResetter(context, config);
                 resetter.ResetKeysSingleEntity(entity);
 
-                //VERIFY 
+                //VERIFY
                 entity.Name.ShouldEndWith(DataResetterConfig.EmailSuffix);
                 entity.Name.Length.ShouldEqual(10);
             }
@@ -117,7 +116,7 @@ namespace Test.UnitTests.TestDataResetter
                 var resetter = new DataResetter(context, config);
                 resetter.ResetKeysSingleEntity(entity);
 
-                //VERIFY 
+                //VERIFY
                 entity.Name.Length.ShouldBeInRange(100, 140);
             }
         }
@@ -145,7 +144,7 @@ namespace Test.UnitTests.TestDataResetter
                 var resetter = new DataResetter(context, config);
                 resetter.ResetKeysSingleEntity(entity);
 
-                //VERIFY 
+                //VERIFY
                 entity.Name.ShouldEqual("My Replacement text");
             }
         }

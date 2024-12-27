@@ -11,12 +11,11 @@ using Test.Helpers;
 using TestSupport.EfHelpers;
 using TestSupport.SeedDatabase;
 using Xunit;
-using Xunit.Abstractions;
 using Xunit.Extensions.AssertExtensions;
 
 namespace Test.UnitTests.TestDataResetter
 {
-    public class TestResetKeysSingleEntity 
+    public class TestResetKeysSingleEntity
     {
         private readonly ITestOutputHelper _output;
 
@@ -40,7 +39,7 @@ namespace Test.UnitTests.TestDataResetter
                 var resetter = new DataResetter(context);
                 resetter.ResetKeysSingleEntity(entity);
 
-                //VERIFY 
+                //VERIFY
                 entity.BookId.ShouldEqual(0);
             }
         }
@@ -60,7 +59,7 @@ namespace Test.UnitTests.TestDataResetter
                 var resetter = new DataResetter(context);
                 resetter.ResetKeysSingleEntity(entity);
 
-                //VERIFY 
+                //VERIFY
                 entity.ReviewId.ShouldEqual(0);
                 entity.BookId.ShouldEqual(0);
             }
@@ -80,7 +79,7 @@ namespace Test.UnitTests.TestDataResetter
                 var resetter = new DataResetter(context);
                 resetter.ResetKeysSingleEntity(entity);
 
-                //VERIFY 
+                //VERIFY
                 entity.Id.ShouldEqual(0);
             }
         }
@@ -102,7 +101,7 @@ namespace Test.UnitTests.TestDataResetter
                 var resetter = new DataResetter(context);
                 resetter.ResetKeysSingleEntity(entity);
 
-                //VERIFY 
+                //VERIFY
                 entity.UserId.ShouldEqual(0);
                 entity.Email.ShouldBeNull();
             }
@@ -126,7 +125,7 @@ namespace Test.UnitTests.TestDataResetter
                 var resetter = new DataResetter(context, config);
                 resetter.ResetKeysSingleEntity(entity);
 
-                //VERIFY 
+                //VERIFY
                 entity.UserId.ShouldEqual(0);
                 entity.Email.ShouldEqual("Hello");
             }
@@ -145,7 +144,7 @@ namespace Test.UnitTests.TestDataResetter
                 var resetter = new DataResetter(context);
                 var ex = Assert.Throws<InvalidOperationException>(() => resetter.ResetKeysSingleEntity(entity));
 
-                //VERIFY 
+                //VERIFY
                 ex.Message.ShouldEqual("The class User is not a class that the provided DbContext knows about.");
             }
         }

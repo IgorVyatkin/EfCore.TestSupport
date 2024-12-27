@@ -6,7 +6,6 @@ using DataLayer.BookApp.EfCode;
 using TestSupport.EfHelpers;
 using TestSupport.Helpers;
 using Xunit;
-using Xunit.Abstractions;
 using Xunit.Extensions.AssertExtensions;
 
 namespace Test.UnitTests.TestDataLayer

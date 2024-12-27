@@ -3,7 +3,7 @@
 
 using TestSupport.Attributes;
 using TestSupport.EfHelpers;
-using Xunit.Abstractions;
+using Xunit;
 
 namespace Test.UnitCommands
 {
@@ -34,7 +34,7 @@ namespace Test.UnitCommands
         {
             var numDeleted = DatabaseTidyHelper
                 .DeleteAllPostgreSqlTestDatabases();
-            _output.WriteLine( 
+            _output.WriteLine(
                 "This deleted {0} PostgreSql databases.", numDeleted);
         }
     }

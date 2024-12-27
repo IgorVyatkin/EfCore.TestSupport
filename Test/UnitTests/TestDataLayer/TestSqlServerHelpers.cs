@@ -10,12 +10,11 @@ using Test.Helpers;
 using TestSupport.Attributes;
 using TestSupport.EfHelpers;
 using Xunit;
-using Xunit.Abstractions;
 using Xunit.Extensions.AssertExtensions;
 
 namespace Test.UnitTests.TestDataLayer
 {
-    public class TestSqlServerHelpers 
+    public class TestSqlServerHelpers
     {
         private readonly ITestOutputHelper _output;
 
@@ -30,7 +29,7 @@ namespace Test.UnitTests.TestDataLayer
             //SETUP
             var options = this.CreateUniqueClassOptions<BookContext>();
             using var context = new BookContext(options);
-            
+
             context.Database.EnsureClean();
 
             //ATTEMPT
@@ -46,7 +45,7 @@ namespace Test.UnitTests.TestDataLayer
             //SETUP
             var options = this.CreateUniqueClassOptions<BookContext>();
             using var context = new BookContext(options);
-            
+
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
 
